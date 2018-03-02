@@ -1,23 +1,22 @@
 import React from 'react'
 import { StyleSheet, Text,
-         View, FlatList,
-         TouchableOpacity } from 'react-native'
+         View, TouchableOpacity } from 'react-native'
 import initialDecks from '../utils/initialDecks'
 import { connect } from 'react-redux'
 import { getAllDecks } from '../actions'
 
-class Decks extends React.Component {
+class DeckView extends React.Component {
 
   state = {
     isLoaded: false
   }
 
   componentWillMount() {
-    this.props.updateDecks()
+    this.props.updateDeckView()
       .then((decks) => this.setState({ isLoaded: true  }))
   }
 
-  onPressItem = (title: string) => {
+  onPressItem = (id: string) => {
     return true
   }
 
@@ -39,7 +38,7 @@ class Decks extends React.Component {
           keyExtractor={(deck, index) => deck.title}
           renderItem={({item}) =>
 						<TouchableOpacity
-              onPress={this.onPressItem(item)}
+              onPress={this.onPressItem}
               style={styles.decksButton}
             >
 							<View style={styles.containCenter}>
@@ -93,7 +92,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  updateDecks: () => dispatch(getAllDecks())
+  updateDeckView: () => dispatch(getAllDeckView())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Decks)
+export default connect(mapStateToProps, mapDispatchToProps)(DeckView)
