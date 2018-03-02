@@ -8,12 +8,7 @@ import { getAllDecks } from '../actions'
 class DeckView extends React.Component {
 
   state = {
-    isLoaded: false
-  }
-
-  componentWillMount() {
-    this.props.updateDeckView()
-      .then((decks) => this.setState({ isLoaded: true  }))
+    isLoaded: true
   }
 
   onPressItem = (id: string) => {
@@ -27,31 +22,23 @@ class DeckView extends React.Component {
 
   render() {
 
+    const deckTitle = this.props.navigation.state.params.title;
+
     if (this.state.isLoaded) {
       const decksList = Object.values(this.props.decks);
 
       return (
-        <FlatList
-          contentContainerStyle={styles.contain}
-          data={decksList}
-          extraData={this.state}
-          keyExtractor={(deck, index) => deck.title}
-          renderItem={({item}) =>
-						<TouchableOpacity
-              onPress={this.onPressItem}
-              style={styles.decksButton}
-            >
-							<View style={styles.containCenter}>
-                <Text style={styles.deckTitle}>
-                  {item.title}
-                </Text>
-								<Text>
-									{item.questions.length} cards
-								</Text>
-							</View>
-						</TouchableOpacity>
- 					}
-        />
+        <View style={styles.containCenter}>
+          {Object.values(this.props.decks)
+            .filter(deck => deck.title === deckTitle)
+            .map(deck =>
+            <Text key={deck.title} style={styles.deckTitle}>
+                { deck.title }
+            </Text>
+            )
+          }
+
+        </View>
       )
     } else {
       return (
@@ -92,7 +79,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  updateDeckView: () => dispatch(getAllDeckView())
+  updateDeckView: () => dispatch(getAllDecks())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckView)

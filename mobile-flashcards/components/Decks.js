@@ -21,6 +21,11 @@ class Decks extends React.Component {
       .then((decks) => this.setState({ isLoaded: true  }))
   }
 
+  onPress(deck) {
+    console.log(deck);
+    this.props.navigation.navigate('DeckView', {title: deck.title})
+  }
+
   renderDeck = ({deck}) => (
     <View style={styles.contain}>
       <Text>Test</Text></View>
@@ -40,6 +45,7 @@ class Decks extends React.Component {
           renderItem={({item}) =>
 						<TouchableOpacity
               style={styles.decksButton}
+              onPress={() => this.onPress(item)}
             >
 							<View style={styles.containCenter}>
                 <Text style={styles.deckTitle}>
