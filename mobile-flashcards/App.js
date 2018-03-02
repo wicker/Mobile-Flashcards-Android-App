@@ -12,7 +12,6 @@ export default class App extends React.Component {
         <Provider store={createStore(reducer)}>
           <View style={styles.container}>
             <Decks />
-            <Text>Test</Text>
           </View>
         </Provider>
     );
