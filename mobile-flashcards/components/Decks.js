@@ -14,8 +14,11 @@ class Decks extends React.Component {
   }
 
   componentDidMount() {
-    this.props.updateDecks();
-    this.setState({ isLoaded: true  })
+    this.props.updateDecks()
+      .then((decks) => {
+        console.log('data did mount: ', decks);
+        this.setState({ isLoaded: true  });
+    })
   }
 
   onPressItem = (id: string) => {

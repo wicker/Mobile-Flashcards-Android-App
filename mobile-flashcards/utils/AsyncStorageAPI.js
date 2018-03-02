@@ -22,7 +22,9 @@ export function checkStorageDecks(decks) {
 // then return the object
 export function setInitialDecks() {
   AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(initialDecks));
-  console.log('test');
   return initialDecks
 }
+
+export const clearStorage = () =>
+  AsyncStorage.setItem(STORAGE_KEY, '')
 
