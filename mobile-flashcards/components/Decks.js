@@ -1,20 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Decks from './components/Decks.js';
 
-export default class App extends React.Component {
+export default class Decks extends React.Component {
 
   render() {
     return (
-        <View style={styles.container}>
-          <Decks />
-          <Text>Test</Text>
-        </View>
+      <View style={styles.contain}>
+      <Text>Testing</Text>
+      </View>
     );
   }
 }
+
 const styles = StyleSheet.create({
-  container: {
+  contain: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',

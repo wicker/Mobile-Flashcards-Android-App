@@ -1,4 +1,4 @@
-initialData = {
+initialDecks = {
   React: {
     title: 'React',
     questions: [
@@ -23,4 +23,4 @@ initialData = {
   }
 }
 
-export default initialData
+export default initialDecks
