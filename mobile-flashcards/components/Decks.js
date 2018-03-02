@@ -8,6 +8,10 @@ import { getAllDecks } from '../actions'
 
 class Decks extends React.Component {
 
+  static navigationOptions = {
+    title: 'Welcome',
+  }
+
   state = {
     isLoaded: false
   }
@@ -15,10 +19,6 @@ class Decks extends React.Component {
   componentWillMount() {
     this.props.updateDecks()
       .then((decks) => this.setState({ isLoaded: true  }))
-  }
-
-  onPressItem = (title: string) => {
-    return true
   }
 
   renderDeck = ({deck}) => (
@@ -39,7 +39,6 @@ class Decks extends React.Component {
           keyExtractor={(deck, index) => deck.title}
           renderItem={({item}) =>
 						<TouchableOpacity
-              onPress={this.onPressItem(item)}
               style={styles.decksButton}
             >
 							<View style={styles.containCenter}>
