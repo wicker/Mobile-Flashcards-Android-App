@@ -22,24 +22,17 @@ export const addNewDeck = (decks, title) => dispatch => {
       title: title,
       questions: []
     }
-    AsyncStorageAPI.addDeck(decks)
+    AsyncStorageAPI.replaceDecks(decks)
       .then(() => dispatch(getAllDecks()));
   }
 }
 
-/* create a new deck in the store
-  using the deck title argument */
-export const addDeck = (title) => ({
-  type: ADD_DECK,
-  title
-})
+export const addNewCard = (decks, title, question, answer) => dispatch => {
 
-/* add a new card to the given deck
-  using the given deck id, question,
-  and answer. */
-export const addCard = (deck_id, card) => ({
-  type: ADD_CARD,
-  deck_id,
-  card
-})
+  decks[title]['questions'].push({ question, answer })
+
+  AsyncStorageAPI.replaceDecks(decks)
+    .then(() => dispatch(getAllDecks()));
+
+}
 

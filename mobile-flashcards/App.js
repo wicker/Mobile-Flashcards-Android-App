@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import Decks from './components/Decks.js'
 import DeckView from './components/DeckView.js'
 import AddDeck from './components/AddDeck.js'
+import AddCard from './components/AddCard.js'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './reducers'
@@ -20,15 +21,18 @@ const MainNav = StackNavigator({
       },
       'Add Deck': {
         screen: AddDeck
-      }
-    }),
+      }    }),
     navigationOptions: {
       title: 'Udacicards',
     }
   },
   DeckView: {
     screen: DeckView
+  },
+  AddCard: {
+    screen: AddCard
   }
+
 });
 
 export default class App extends React.Component {

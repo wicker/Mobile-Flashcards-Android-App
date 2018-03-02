@@ -28,5 +28,5 @@ export function setInitialDecks() {
 export const clearStorage = () =>
   AsyncStorage.setItem(STORAGE_KEY, '')
 
-export const addDeck = (decks) =>
+export const replaceDecks = (decks) =>
   AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(decks))

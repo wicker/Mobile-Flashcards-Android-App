@@ -22,7 +22,6 @@ class Decks extends React.Component {
   }
 
   onPress(deck) {
-    console.log(deck);
     this.props.navigation.navigate('DeckView', {title: deck.title})
   }
 

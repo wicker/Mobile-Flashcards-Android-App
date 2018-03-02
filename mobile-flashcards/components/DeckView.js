@@ -28,7 +28,7 @@ class DeckView extends React.Component {
   }
 
   onPressAddCard = (title) => {
-    console.log(title);
+    this.props.navigation.navigate('AddCard', {title: title})
   }
 
   onPressStartQuiz = (title, cards) => {
@@ -114,7 +114,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  updateDeckView: () => dispatch(getAllDecks())
+  updateDecks: () => dispatch(getAllDecks())
 });
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckView)
