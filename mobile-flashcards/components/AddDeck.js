@@ -8,6 +8,7 @@ import { StyleSheet, Text,
 import initialDecks from '../utils/initialDecks'
 import { connect } from 'react-redux'
 import { addNewDeck } from '../actions'
+import { NavigationActions } from 'react-navigation'
 
 class AddDeck extends React.Component {
 
@@ -22,6 +23,12 @@ class AddDeck extends React.Component {
     this.setState(() => ({
       input
     }))
+  }
+
+  onSubmit = (decks, title) => {
+    this.props.addDeck(decks, title);
+    this.props.navigation
+      .dispatch(NavigationActions.navigate({routeName: 'Decks'}));
   }
 
   render() {
@@ -43,7 +50,7 @@ class AddDeck extends React.Component {
         />
         <TouchableOpacity
           style={styles.deckButton}
-          onPress={() => this.props.addDeck(this.props.decks, this.state.text)}
+          onPress={() => this.onSubmit(this.props.decks, this.state.text)}
         >
  				  <View>
             <Text>Create Deck</Text>
