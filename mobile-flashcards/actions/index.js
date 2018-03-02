@@ -12,9 +12,9 @@ export const updateDecks = (decks) => ({
   decks
 })
 
-export const getAllDecks = () => (
-  dispatch => updateDecks(initialDecks)
-)
+export const getAllDecks = () => dispatch =>
+  AsyncStorageAPI.getDecksFromStorage()
+    .then(decks => dispatch(updateDecks(decks)));
 
 
 /* create a new deck in the store

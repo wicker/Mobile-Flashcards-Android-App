@@ -29,6 +29,8 @@ class Decks extends React.Component {
 
   render() {
 
+    console.log('decks: ',this.props.decks);
+
     const decksList = Object.values(this.state.decks);
 
     if (this.state.isLoaded) {
