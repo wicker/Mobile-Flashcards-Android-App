@@ -1,21 +1,55 @@
 import React from 'react'
 import { StyleSheet, Text,
          View, FlatList,
-         TouchableOpacity } from 'react-native'
+         TouchableOpacity,
+         Form, Item, Label,
+         TextInput, Button,
+         KeyboardAvoidingView} from 'react-native'
 import initialDecks from '../utils/initialDecks'
 import { connect } from 'react-redux'
-import { getAllDecks } from '../actions'
+import { addNewDeck } from '../actions'
 
 class AddDeck extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+ 			text: ''
+		};
+  }
+
+  handleTextChange = (input) => {
+    this.setState(() => ({
+      input
+    }))
+  }
+
   render() {
 
+    const { input } = this.state
+
     return (
-      <View style={styles.containCenter}>
+      <KeyboardAvoidingView style={styles.containCenter}>
         <Text style={styles.deckTitle}>
-          Test
+          Add a Deck
         </Text>
-      </View>
+        <Text>
+          What is the title of your new deck?
+        </Text>
+        <TextInput
+          value={input}
+          onChangeText={(text) => this.setState({text})}
+          style={styles.input}
+        />
+        <TouchableOpacity
+          style={styles.deckButton}
+          onPress={() => this.props.addDeck(this.props.decks, this.state.text)}
+        >
+ 				  <View>
+            <Text>Create Deck</Text>
+          </View>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -41,6 +75,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  input: {
+    borderRadius: 10,
+    padding: 10,
+    margin: 10,
+    backgroundColor: '#fff',
+    width: 300
+  }
 });
 
 const mapStateToProps = state => ({
@@ -49,7 +90,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  updateDecks: () => dispatch(getAllDecks())
+  addDeck: (decks, title) => dispatch(addNewDeck(decks, title)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddDeck)

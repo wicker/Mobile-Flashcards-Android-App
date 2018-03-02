@@ -16,6 +16,16 @@ export const getAllDecks = () => dispatch =>
   AsyncStorageAPI.getDecksFromStorage()
     .then(decks => dispatch(updateDecks(decks)));
 
+export const addNewDeck = (decks, title) => dispatch => {
+  if (!decks[title]) {
+    decks[title] = {
+      title: title,
+      questions: []
+    }
+    AsyncStorageAPI.addDeck(decks)
+      .then(() => dispatch(getAllDecks()));
+  }
+}
 
 /* create a new deck in the store
   using the deck title argument */
