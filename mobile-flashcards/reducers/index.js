@@ -1,3 +1,5 @@
+import initialDecks from '../utils/initialDecks'
+
 import {
   GET_DECKS,
   ADD_DECK,
@@ -7,13 +9,14 @@ import {
 function decks (state = {}, action) {
   switch (action.type) {
     case GET_DECKS:
-      return action.decks;
+      return action.decks
+
     case ADD_DECK:
-      return state;
+      return state
     case ADD_CARD:
-      return state;
+      return state
     default:
-      return state;
+      return state
   }
 }
 

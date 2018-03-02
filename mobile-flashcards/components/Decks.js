@@ -9,16 +9,12 @@ import { getAllDecks } from '../actions'
 class Decks extends React.Component {
 
   state = {
-    isLoaded: false, /*todo: set to false when using store */
-    decks: initialDecks
+    isLoaded: false
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.updateDecks()
-      .then((decks) => {
-        console.log('data did mount: ', decks);
-        this.setState({ isLoaded: true  });
-    })
+      .then((decks) => this.setState({ isLoaded: true  }))
   }
 
   onPressItem = (id: string) => {
@@ -32,11 +28,9 @@ class Decks extends React.Component {
 
   render() {
 
-    console.log('decks: ',this.props.decks);
-
-    const decksList = Object.values(this.state.decks);
-
     if (this.state.isLoaded) {
+      const decksList = Object.values(this.props.decks);
+
       return (
         <FlatList
           data={decksList}
@@ -73,7 +67,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  decks: state.decks
+  decks: state
 });
 
 const mapDispatchToProps = dispatch => ({

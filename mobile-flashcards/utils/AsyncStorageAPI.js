@@ -11,7 +11,7 @@ export const getDecksFromStorage = () =>
 // if the decks object exists in AsyncStorage,
 // parse it and return
 export function checkStorageDecks(decks) {
-  console.log(decks);
+  console.log('got from storage: ',decks);
   if (decks) {
     return JSON.parse(decks)
   } else {
