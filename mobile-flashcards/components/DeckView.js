@@ -32,7 +32,7 @@ class DeckView extends React.Component {
   }
 
   onPressStartQuiz = (title, cards) => {
-    console.log(title, cards);
+    this.props.navigation.navigate('Quiz', {title: title, cards: cards})
   }
 
   renderDeck = ({deck}) => (

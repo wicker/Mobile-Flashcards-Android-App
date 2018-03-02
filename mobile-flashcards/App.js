@@ -4,6 +4,7 @@ import Decks from './components/Decks.js'
 import DeckView from './components/DeckView.js'
 import AddDeck from './components/AddDeck.js'
 import AddCard from './components/AddCard.js'
+import Quiz from './components/Quiz.js'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './reducers'
@@ -28,6 +29,9 @@ const MainNav = StackNavigator({
   },
   DeckView: {
     screen: DeckView
+  },
+  Quiz: {
+    screen: Quiz
   },
   AddCard: {
     screen: AddCard
