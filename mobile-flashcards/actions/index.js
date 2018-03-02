@@ -7,7 +7,7 @@ export const ADD_CARD = 'ADD_CARD';
 export const getDecks = () => ({
   type: GET_DECKS,
   decks
-)}
+})
 
 /* create a new deck in the store
   using the deck title argument */

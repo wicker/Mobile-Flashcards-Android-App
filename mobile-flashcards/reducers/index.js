@@ -1,7 +1,7 @@
 import {
   GET_DECKS,
   ADD_DECK,
-  ADD_CARDS
+  ADD_CARD
 } from '../actions'
 
 function decks (state = {}, action) {
