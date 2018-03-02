@@ -1,27 +1,46 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text,
+         View, FlatList,
+         TouchableOpacity } from 'react-native'
 import initialDecks from '../utils/initialDecks'
 
 export default class Decks extends React.Component {
 
   state = {
     isLoaded: true, /*todo: set to false when using store */
-    decks: initialDecks
+    decks: initialDecks,
+    selected: (new Map(): Map<string, boolean>)
   }
 
-  keyExtractor = (deck, index) => deck.title;
+  onPressItem = (id: string) => {
+    return true
+  };
+
+  renderDeck = ({deck}) => (
+    <View style={styles.contain}>
+      <Text>Test</Text></View>
+  )
 
   render() {
 
+    const decksList = Object.values(this.state.decks);
+
     if (this.state.isLoaded) {
       return (
-        <View style={styles.contain}>
-          {Object.values(this.state.decks)
-            .map(deck =>
-              <Text key={deck.title}>{deck.title}</Text>
-            )
-          }
-        </View>
+        <FlatList
+          data={decksList}
+          extraData={this.state}
+          keyExtractor={(deck, index) => deck.title}
+          renderItem={({item}) =>
+						<TouchableOpacity onPress={this.onPressItem}>
+							<View>
+								<Text style={styles.contain}>
+									{item.title}  - {item.questions.length} cards
+								</Text>
+							</View>
+						</TouchableOpacity>
+ 					}
+        />
       )
     } else {
       return (
