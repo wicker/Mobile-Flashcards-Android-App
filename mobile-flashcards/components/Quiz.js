@@ -22,8 +22,26 @@ class Quiz extends React.Component {
 		};
   }
 
-  onSubmit = (isCorrect) => {
-    console.log(isCorrect);
+  onSubmitCorrect = () => {
+    console.log('true');
+  }
+
+  onSubmitIncorrect = () => {
+    console.log('false');
+  }
+
+  onSubmitDeckView = () => {
+    this.props.navigation.navigate('DeckView', {title: this.state.title})
+    console.log('go back to deck');
+  }
+
+  onSubmitResetQuiz = () => {
+    this.props.navigation.navigate('Quiz', {
+        title: this.state.title,
+        cards: this.state.questions
+      }
+    )
+    console.log('reset quiz');
   }
 
   render() {
@@ -31,12 +49,14 @@ class Quiz extends React.Component {
     return (
       <KeyboardAvoidingView style={styles.containCenter}>
         <Text style={styles.deckTitle}>
-          Add a Card
+          Quiz
         </Text>
-        <Text>{ this.state.questions[this.state.countCardsSeen+1] }</Text>
+        <Text>{ this.state.countCardsTotal - this.state.countCardsSeen } remaining</Text>
+        <Text>{ this.state.questions[this.state.countCardsSeen].question }</Text>
+        <Text>{ this.state.questions[this.state.countCardsSeen].answer }</Text>
         <TouchableOpacity
           style={styles.deckButton}
-          onPress={() => this.onSubmit(true)}
+          onPress={() => this.onSubmitCorrect()}
         >
  				  <View>
             <Text>Correct</Text>
@@ -44,10 +64,26 @@ class Quiz extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.deckButton}
-          onPress={() => this.onSubmit(false)}
+          onPress={() => this.onSubmitIncorrect()}
         >
  				  <View>
             <Text>Incorrect</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.deckButton}
+          onPress={() => this.onSubmitDeckView()}
+        >
+ 				  <View>
+            <Text>Back to Deck</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.deckButton}
+          onPress={() => this.onSubmitResetQuiz()}
+        >
+ 				  <View>
+            <Text>Reset Quiz</Text>
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
