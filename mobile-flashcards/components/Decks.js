@@ -33,14 +33,21 @@ class Decks extends React.Component {
 
       return (
         <FlatList
+          contentContainerStyle={styles.contain}
           data={decksList}
           extraData={this.state}
           keyExtractor={(deck, index) => deck.title}
           renderItem={({item}) =>
-						<TouchableOpacity onPress={this.onPressItem}>
-							<View>
-								<Text style={styles.contain}>
-									{item.title}  - {item.questions.length} cards
+						<TouchableOpacity
+              onPress={this.onPressItem}
+              style={styles.decksButton}
+            >
+							<View style={styles.containCenter}>
+                <Text style={styles.deckTitle}>
+                  {item.title}
+                </Text>
+								<Text>
+									{item.questions.length} cards
 								</Text>
 							</View>
 						</TouchableOpacity>
@@ -61,8 +68,22 @@ const styles = StyleSheet.create({
   contain: {
     flex: 1,
     backgroundColor: '#fff',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+  },
+  containCenter: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  decksButton: {
+    borderRadius: 10,
+    backgroundColor: '#cfcfcf',
+    margin: 20,
+    padding: 20
+  },
+  deckTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
 
