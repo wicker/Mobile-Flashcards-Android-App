@@ -27,8 +27,15 @@ class AddDeck extends React.Component {
 
   onSubmit = (decks, title) => {
     this.props.addDeck(decks, title);
+
     this.props.navigation
-      .dispatch(NavigationActions.navigate({routeName: 'Decks'}));
+      .dispatch(NavigationActions.navigate(
+        {
+          routeName: 'DeckView',
+          params: {
+            title: title
+          }
+        }));
   }
 
   render() {
