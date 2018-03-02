@@ -3,18 +3,24 @@ import { StyleSheet, Text,
          View, FlatList,
          TouchableOpacity } from 'react-native'
 import initialDecks from '../utils/initialDecks'
+import { connect } from 'react-redux'
+import { getAllDecks } from '../actions'
 
-export default class Decks extends React.Component {
+class Decks extends React.Component {
 
   state = {
-    isLoaded: true, /*todo: set to false when using store */
-    decks: initialDecks,
-    selected: (new Map(): Map<string, boolean>)
+    isLoaded: false, /*todo: set to false when using store */
+    decks: initialDecks
+  }
+
+  componentDidMount() {
+    this.props.updateDecks();
+    this.setState({ isLoaded: true  })
   }
 
   onPressItem = (id: string) => {
     return true
-  };
+  }
 
   renderDeck = ({deck}) => (
     <View style={styles.contain}>
@@ -61,3 +67,13 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = state => ({
+  decks: state.decks
+});
+
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+  updateDecks: () => dispatch(getAllDecks())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Decks)

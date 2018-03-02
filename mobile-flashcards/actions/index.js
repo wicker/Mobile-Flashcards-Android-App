@@ -1,13 +1,21 @@
+import initialDecks from '../utils/initialDecks'
+import * as AsyncStorageAPI from '../utils/AsyncStorageAPI'
+
 export const GET_DECKS = 'GET_DECKS';
 export const ADD_DECK = 'ADD_DECK';
 export const ADD_CARD = 'ADD_CARD';
 
 /* update the store with the decks
    from AsyncStorage */
-export const getDecks = () => ({
+export const updateDecks = (decks) => ({
   type: GET_DECKS,
   decks
 })
+
+export const getAllDecks = () => (
+  dispatch => updateDecks(initialDecks)
+)
+
 
 /* create a new deck in the store
   using the deck title argument */
@@ -24,3 +32,4 @@ export const addCard = (deck_id, card) => ({
   deck_id,
   card
 })
+
