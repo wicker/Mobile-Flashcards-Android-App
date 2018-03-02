@@ -8,11 +8,31 @@ import { getAllDecks } from '../actions'
 class DeckView extends React.Component {
 
   state = {
-    isLoaded: true
+    isLoaded: false,
+    title: '',
+    cards: []
   }
 
-  onPressItem = (id: string) => {
-    return true
+  componentDidMount() {
+    const thisDeck =
+      Object.values(this.props.decks)
+        .filter(deck =>
+          deck.title === this.props.navigation.state.params.title);
+
+    this.setState({
+      title: thisDeck[0].title,
+      cards: thisDeck[0].questions,
+      isLoaded: true
+    });
+
+  }
+
+  onPressAddCard = (title) => {
+    console.log(title);
+  }
+
+  onPressStartQuiz = (title, cards) => {
+    console.log(title, cards);
   }
 
   renderDeck = ({deck}) => (
@@ -22,21 +42,35 @@ class DeckView extends React.Component {
 
   render() {
 
-    const deckTitle = this.props.navigation.state.params.title;
 
     if (this.state.isLoaded) {
-      const decksList = Object.values(this.props.decks);
 
       return (
-        <View style={styles.containCenter}>
-          {Object.values(this.props.decks)
-            .filter(deck => deck.title === deckTitle)
-            .map(deck =>
-            <Text key={deck.title} style={styles.deckTitle}>
-                { deck.title }
-            </Text>
-            )
-          }
+        <View>
+          <View key={this.state.title} style={styles.containCenter}>
+            <Text style={styles.deckTitle}>{ this.state.title }</Text>
+            <Text>{this.state.cards.length} cards</Text>
+          </View>
+          <TouchableOpacity
+            style={styles.decksButton}
+            onPress={() => this.onPressAddCard(this.state.title)}
+          >
+            <View style={styles.containCenter}>
+              <Text style={styles.deckTitle}>
+                Add Card
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.decksButton}
+            onPress={() => this.onPressStartQuiz(this.state.title,this.state.cards)}
+          >
+            <View style={styles.containCenter}>
+              <Text style={styles.deckTitle}>
+                Start Quiz
+              </Text>
+            </View>
+          </TouchableOpacity>
 
         </View>
       )
@@ -68,8 +102,9 @@ const styles = StyleSheet.create({
     padding: 20
   },
   deckTitle: {
-    fontSize: 20,
+    fontSize: 40,
     fontWeight: 'bold',
+    padding: 20
   },
 });
 
