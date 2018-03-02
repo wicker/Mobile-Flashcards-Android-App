@@ -2,22 +2,33 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Decks from './components/Decks.js'
 import DeckView from './components/DeckView.js'
+import AddDeck from './components/AddDeck.js'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './reducers'
 import thunk from 'redux-thunk'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 
-const MainNavigator = StackNavigator({
-    Decks: {
-      screen: Decks,
-      navigationOptions: {
-        title: 'Udacicards : Your Decks'
+const MainNav = StackNavigator({
+  DeckTab: {
+    screen: TabNavigator({
+      Decks: {
+        screen: Decks,
+        navigationOptions: {
+          title: 'Your Decks'
+        }
+      },
+      'Add Deck': {
+        screen: AddDeck
       }
-    },
-    DeckView: {
-      screen: DeckView
+    }),
+    navigationOptions: {
+      title: 'Udacicards',
     }
+  },
+  DeckView: {
+    screen: DeckView
+  }
 });
 
 export default class App extends React.Component {
@@ -31,7 +42,7 @@ export default class App extends React.Component {
 
     return (
         <Provider store={store}>
-          <MainNavigator />
+          <MainNav />
         </Provider>
     );
   }
