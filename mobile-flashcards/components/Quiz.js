@@ -18,9 +18,11 @@ class Quiz extends React.Component {
       questions: this.props.navigation.state.params.cards,
       countCardsTotal: this.props.navigation.state.params.cards.length,
       countCardsSeen: 0,
-      countCardsCorrect: 0
+      countCardsCorrect: 0,
+      displayQuestion: true
 		};
   }
+
 
   onSubmitCorrect = () => {
     console.log('true');
@@ -44,16 +46,38 @@ class Quiz extends React.Component {
     console.log('reset quiz');
   }
 
+  onSubmitShowButton = () => {
+    this.setState({
+      displayQuestion: !this.state.displayQuestion
+    })
+  }
+
   render() {
 
+    if (this.state.displayQuestion) {
+      cardMessage = 'q';
+      buttonMessage = 'Show Answer';
+    } else {
+      cardMessage = 'a';
+      buttonMessage = 'Show Question';
+    }
     return (
       <KeyboardAvoidingView style={styles.containCenter}>
         <Text style={styles.deckTitle}>
           Quiz
         </Text>
         <Text>{ this.state.countCardsTotal - this.state.countCardsSeen } remaining</Text>
-        <Text>{ this.state.questions[this.state.countCardsSeen].question }</Text>
-        <Text>{ this.state.questions[this.state.countCardsSeen].answer }</Text>
+
+        <Text>{ cardMessage }</Text>
+
+        <TouchableOpacity
+          style={styles.deckButton}
+          onPress={() => this.onSubmitShowButton()}
+        >
+ 				  <View>
+            <Text>{ buttonMessage }</Text>
+          </View>
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.deckButton}
           onPress={() => this.onSubmitCorrect()}
