@@ -37,7 +37,7 @@ class Decks extends React.Component {
 
       return (
         <FlatList
-          contentContainerStyle={styles.contain}
+          removeClippedSubviews={false}
           data={decksList}
           extraData={this.state}
           keyExtractor={(deck, index) => deck.title}
