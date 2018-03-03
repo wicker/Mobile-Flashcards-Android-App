@@ -25,16 +25,22 @@ class Quiz extends React.Component {
 
 
   onSubmitCorrect = () => {
-    console.log('true');
+    this.setState({
+      countCardsSeen: this.state.countCardsSeen + 1,
+      countCardsCorrect: this.state.countCardsCorrect +1,
+      displayQuestion: true
+    })
   }
 
   onSubmitIncorrect = () => {
-    console.log('false');
+    this.setState({
+      countCardsSeen: this.state.countCardsSeen + 1,
+      displayQuestion: true
+    })
   }
 
   onSubmitDeckView = () => {
     this.props.navigation.navigate('DeckView', {title: this.state.title})
-    console.log('go back to deck');
   }
 
   onSubmitResetQuiz = () => {
@@ -43,57 +49,52 @@ class Quiz extends React.Component {
         cards: this.state.questions
       }
     )
-    console.log('reset quiz');
-  }
-
-  onSubmitShowButton = () => {
-    this.setState({
-      displayQuestion: !this.state.displayQuestion
-    })
   }
 
   render() {
 
-    if (this.state.displayQuestion) {
-      cardMessage = 'q';
-      buttonMessage = 'Show Answer';
-    } else {
-      cardMessage = 'a';
-      buttonMessage = 'Show Question';
+    if (
+        this.state.countCardsTotal - this.state.countCardsSeen > 0) {
+      if (this.state.displayQuestion) {
+        cardMessage = this.state.questions[this.state.countCardsSeen].question;
+        buttonMessage = 'Show Answer';
+      } else {
+        cardMessage = this.state.questions[this.state.countCardsSeen].answer;
+        buttonMessage = 'Show Question';
+
+      }
     }
     return (
       <KeyboardAvoidingView style={styles.containCenter}>
         <Text style={styles.deckTitle}>
           Quiz
         </Text>
-        <Text>{ this.state.countCardsTotal - this.state.countCardsSeen } remaining</Text>
 
-        <Text>{ cardMessage }</Text>
+        { this.state.countCardsTotal - this.state.countCardsSeen > 0
+          ? <View>
+             <Text>{ this.state.countCardsTotal - this.state.countCardsSeen } remaining</Text>
+             <Text>{ cardMessage }</Text>
+             <TouchableOpacity
+               style={styles.deckButton}
+               onPress={() => this.onSubmitCorrect()}
+             >
+               <View>
+                 <Text>Correct</Text>
+               </View>
+             </TouchableOpacity>
+             <TouchableOpacity
+               style={styles.deckButton}
+               onPress={() => this.onSubmitIncorrect()}
+             >
+               <View>
+                 <Text>Incorrect</Text>
+               </View>
+             </TouchableOpacity>
+            </View>
+          :  <Text>{ this.state.countCardsCorrect } / { this.state.countCardsTotal } correct!</Text>
 
-        <TouchableOpacity
-          style={styles.deckButton}
-          onPress={() => this.onSubmitShowButton()}
-        >
- 				  <View>
-            <Text>{ buttonMessage }</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.deckButton}
-          onPress={() => this.onSubmitCorrect()}
-        >
- 				  <View>
-            <Text>Correct</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.deckButton}
-          onPress={() => this.onSubmitIncorrect()}
-        >
- 				  <View>
-            <Text>Incorrect</Text>
-          </View>
-        </TouchableOpacity>
+        }
+
         <TouchableOpacity
           style={styles.deckButton}
           onPress={() => this.onSubmitDeckView()}
