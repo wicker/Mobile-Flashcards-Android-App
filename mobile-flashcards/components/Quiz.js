@@ -40,15 +40,15 @@ class Quiz extends React.Component {
   }
 
   onSubmitDeckView = () => {
-    this.props.navigation.navigate('DeckView', {title: this.state.title})
+    this.props.navigation.goBack()
   }
 
   onSubmitResetQuiz = () => {
-    this.props.navigation.navigate('Quiz', {
-        title: this.state.title,
-        cards: this.state.questions
-      }
-    )
+    this.setState({
+      countCardsSeen: 0,
+      countCardsCorrect: 0,
+      displayQuestion: true
+    })
   }
 
   render() {

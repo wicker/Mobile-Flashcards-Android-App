@@ -23,15 +23,7 @@ class AddCard extends React.Component {
 
   onSubmit = (decks, title, question, answer) => {
     this.props.addCard(decks, title, question, answer);
-
-    this.props.navigation
-      .dispatch(NavigationActions.navigate(
-        {
-          routeName: 'DeckView',
-          params: {
-            title: title
-          }
-        }));
+    this.props.navigation.goBack()
   }
 
   render() {
