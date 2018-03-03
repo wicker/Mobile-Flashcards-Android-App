@@ -24,7 +24,7 @@ const MainNav = StackNavigator({
         screen: AddDeck
       }    }),
     navigationOptions: {
-      title: 'Udacicards',
+      title: 'Mobile Flashcards App',
     }
   },
   DeckView: {

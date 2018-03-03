@@ -36,7 +36,7 @@ class AddCard extends React.Component {
           Add a Card
         </Text>
         <Text>
-          Question?
+          Question
         </Text>
         <TextInput
           value={input}
@@ -44,7 +44,7 @@ class AddCard extends React.Component {
           style={styles.input}
         />
         <Text>
-          Question?
+          Answer
         </Text>
         <TextInput
           value={input}
