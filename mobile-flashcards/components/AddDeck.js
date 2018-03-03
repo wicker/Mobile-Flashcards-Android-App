@@ -36,11 +36,11 @@ class AddDeck extends React.Component {
 
     return (
       <KeyboardAvoidingView style={styles.containCenter}>
-        <Text style={styles.deckTitle}>
+        <Text style={styles.title}>
           Add a Deck
         </Text>
-        <Text>
-          What is the title of your new deck?
+        <Text style={styles.text}>
+          Enter the name of your deck
         </Text>
         <TextInput
           value={input}
@@ -48,11 +48,11 @@ class AddDeck extends React.Component {
           style={styles.input}
         />
         <TouchableOpacity
-          style={styles.deckButton}
+          style={styles.addButton}
           onPress={() => this.onSubmit(this.props.decks, this.state.text)}
         >
  				  <View>
-            <Text>Create Deck</Text>
+            <Text style={styles.addButtonText}>Create Deck</Text>
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -61,25 +61,24 @@ class AddDeck extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  contain: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'center',
-  },
   containCenter: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  decksButton: {
+  addButton: {
     borderRadius: 10,
-    backgroundColor: '#cfcfcf',
+    backgroundColor: '#4DD0E1',
     margin: 20,
     padding: 20
   },
-  deckTitle: {
+  addButtonText: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  text: {
+    padding: 10,
+    textAlign: 'center',
+    fontSize: 18
   },
   input: {
     borderRadius: 10,
@@ -87,6 +86,12 @@ const styles = StyleSheet.create({
     margin: 10,
     backgroundColor: '#fff',
     width: 300
+  },
+  title: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    margin: 30
   }
 });
 

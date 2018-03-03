@@ -13,30 +13,67 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 
 const MainNav = StackNavigator({
   DeckTab: {
-    screen: TabNavigator({
-      Decks: {
-        screen: Decks,
-        navigationOptions: {
-          title: 'Your Decks'
-        }
-      },
-      'Add Deck': {
-        screen: AddDeck
-      }    }),
+    screen:
+
+			TabNavigator(
+				{
+					Decks: {
+						screen: Decks,
+						navigationOptions: {
+							title: 'All Decks',
+						},
+					},
+					'Add Deck': {
+						screen: AddDeck,
+					}
+				},
+			  { tabBarOptions: {
+						activeTintColor: 'black',
+						inactiveTintColor: 'white',
+            style: {
+              backgroundColor: '#00ACC1'
+						},
+            indicatorStyle: {
+              backgroundColor: '#006064'
+            }
+					},
+				}
+			),
+
     navigationOptions: {
       title: 'Mobile Flashcards App',
+      headerStyle: {
+        backgroundColor: '#00BCD4',
+      }
     }
   },
   DeckView: {
-    screen: DeckView
+    screen: DeckView,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#00BCD4',
+      }
+    }
   },
   Quiz: {
-    screen: Quiz
+    screen: Quiz,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#00BCD4',
+      }
+    }
   },
   AddCard: {
-    screen: AddCard
+    screen: AddCard,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#00BCD4',
+      }
+    }
   }
 
+}, {
+  headerMode: 'screen'
 });
 
 export default class App extends React.Component {
@@ -49,9 +86,9 @@ export default class App extends React.Component {
     )
 
     return (
-        <Provider store={store}>
-          <MainNav />
-        </Provider>
+      <Provider store={store}>
+        <MainNav style={styles.bg}/>
+      </Provider>
     );
   }
 }
@@ -59,7 +96,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#B2EBF2',
     alignItems: 'center',
     justifyContent: 'center',
   },

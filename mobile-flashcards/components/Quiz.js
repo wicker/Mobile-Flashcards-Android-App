@@ -23,6 +23,11 @@ class Quiz extends React.Component {
 		};
   }
 
+  onSubmitShowButton = () => {
+    this.setState({
+      displayQuestion: !this.state.displayQuestion
+    })
+  }
 
   onSubmitCorrect = () => {
     this.setState({
@@ -66,16 +71,24 @@ class Quiz extends React.Component {
     }
     return (
       <KeyboardAvoidingView style={styles.containCenter}>
-        <Text style={styles.deckTitle}>
+        <Text style={styles.title}>
           Quiz
         </Text>
 
         { this.state.countCardsTotal - this.state.countCardsSeen > 0
           ? <View>
-             <Text>{ this.state.countCardsTotal - this.state.countCardsSeen } remaining</Text>
-             <Text>{ cardMessage }</Text>
+             <Text style={styles.text}>{ this.state.countCardsTotal - this.state.countCardsSeen } remaining</Text>
+             <Text style={styles.cardText}>{ cardMessage }</Text>
              <TouchableOpacity
-               style={styles.deckButton}
+               style={styles.button}
+               onPress={() => this.onSubmitShowButton()}
+             >
+               <View>
+                 <Text>{ buttonMessage }</Text>
+               </View>
+             </TouchableOpacity>
+             <TouchableOpacity
+               style={styles.button}
                onPress={() => this.onSubmitCorrect()}
              >
                <View>
@@ -83,7 +96,7 @@ class Quiz extends React.Component {
                </View>
              </TouchableOpacity>
              <TouchableOpacity
-               style={styles.deckButton}
+               style={styles.button}
                onPress={() => this.onSubmitIncorrect()}
              >
                <View>
@@ -91,12 +104,14 @@ class Quiz extends React.Component {
                </View>
              </TouchableOpacity>
             </View>
-          :  <Text>{ this.state.countCardsCorrect } / { this.state.countCardsTotal } correct!</Text>
+          :  <Text style={styles.text}>
+               { this.state.countCardsCorrect } / { this.state.countCardsTotal } correct!
+             </Text>
 
         }
 
         <TouchableOpacity
-          style={styles.deckButton}
+          style={styles.button}
           onPress={() => this.onSubmitDeckView()}
         >
  				  <View>
@@ -104,7 +119,7 @@ class Quiz extends React.Component {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.deckButton}
+          style={styles.button}
           onPress={() => this.onSubmitResetQuiz()}
         >
  				  <View>
@@ -117,25 +132,24 @@ class Quiz extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  contain: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'center',
-  },
   containCenter: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  decksButton: {
+  button: {
     borderRadius: 10,
-    backgroundColor: '#cfcfcf',
+    backgroundColor: '#4DD0E1',
     margin: 20,
     padding: 20
   },
-  deckTitle: {
+  addButtonText: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  text: {
+    padding: 10,
+    textAlign: 'center',
+    fontSize: 18
   },
   input: {
     borderRadius: 10,
@@ -143,6 +157,12 @@ const styles = StyleSheet.create({
     margin: 10,
     backgroundColor: '#fff',
     width: 300
+  },
+  title: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    margin: 30
   }
 });
 

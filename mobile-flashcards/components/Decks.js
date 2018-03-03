@@ -8,10 +8,6 @@ import { getAllDecks } from '../actions'
 
 class Decks extends React.Component {
 
-  static navigationOptions = {
-    title: 'Welcome',
-  }
-
   state = {
     isLoaded: false
   }
@@ -36,27 +32,30 @@ class Decks extends React.Component {
       const decksList = Object.values(this.props.decks);
 
       return (
-        <FlatList
-          removeClippedSubviews={false}
-          data={decksList}
-          extraData={this.state}
-          keyExtractor={(deck, index) => deck.title}
-          renderItem={({item}) =>
-						<TouchableOpacity
-              style={styles.decksButton}
-              onPress={() => this.onPress(item)}
-            >
-							<View style={styles.containCenter}>
-                <Text style={styles.deckTitle}>
-                  {item.title}
-                </Text>
-								<Text>
-									{item.questions.length} cards
-								</Text>
-							</View>
-						</TouchableOpacity>
- 					}
-        />
+        <View style={styles.contain}>
+          <Text style={styles.title}>All Decks</Text>
+          <FlatList
+            removeClippedSubviews={false}
+            data={decksList}
+            extraData={this.state}
+            keyExtractor={(deck, index) => deck.title}
+            renderItem={({item}) =>
+              <TouchableOpacity
+                style={styles.decksButton}
+                onPress={() => this.onPress(item)}
+              >
+                <View style={styles.containCenter}>
+                  <Text style={styles.deckTitle}>
+                    {item.title}
+                  </Text>
+                  <Text>
+                    {item.questions.length} cards
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            }
+          />
+        </View>
       )
     } else {
       return (
@@ -81,14 +80,22 @@ const styles = StyleSheet.create({
   },
   decksButton: {
     borderRadius: 10,
-    backgroundColor: '#cfcfcf',
+    backgroundColor: '#4DD0E1',
     margin: 20,
     padding: 20
   },
   deckTitle: {
     fontSize: 20,
     fontWeight: 'bold',
+    textAlign: 'center'
   },
+  title: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    margin: 20,
+    marginTop: 30
+  }
 });
 
 const mapStateToProps = state => ({

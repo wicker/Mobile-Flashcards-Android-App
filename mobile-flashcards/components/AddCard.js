@@ -32,10 +32,10 @@ class AddCard extends React.Component {
 
     return (
       <KeyboardAvoidingView style={styles.containCenter}>
-        <Text style={styles.deckTitle}>
-          Add a Card
+        <Text style={styles.title}>
+          Add a Card to { this.state.title }
         </Text>
-        <Text>
+        <Text style={styles.text}>
           Question
         </Text>
         <TextInput
@@ -43,7 +43,7 @@ class AddCard extends React.Component {
           onChangeText={(text) => this.setState({question: text})}
           style={styles.input}
         />
-        <Text>
+        <Text style={styles.text}>
           Answer
         </Text>
         <TextInput
@@ -52,14 +52,14 @@ class AddCard extends React.Component {
           style={styles.input}
         />
         <TouchableOpacity
-          style={styles.deckButton}
+          style={styles.addButton}
           onPress={() => this.onSubmit(this.props.decks,
                                        this.state.title,
                                        this.state.question,
                                        this.state.answer)}
         >
  				  <View>
-            <Text>Add Card</Text>
+            <Text style={styles.addButtonText}>Add Card</Text>
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -68,25 +68,24 @@ class AddCard extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  contain: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'center',
-  },
   containCenter: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  decksButton: {
+  addButton: {
     borderRadius: 10,
-    backgroundColor: '#cfcfcf',
+    backgroundColor: '#4DD0E1',
     margin: 20,
     padding: 20
   },
-  deckTitle: {
+  addButtonText: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  text: {
+    padding: 10,
+    textAlign: 'center',
+    fontSize: 18
   },
   input: {
     borderRadius: 10,
@@ -94,6 +93,12 @@ const styles = StyleSheet.create({
     margin: 10,
     backgroundColor: '#fff',
     width: 300
+  },
+  title: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    margin: 30
   }
 });
 

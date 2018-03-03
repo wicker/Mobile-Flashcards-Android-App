@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   decksButton: {
     borderRadius: 10,
-    backgroundColor: '#cfcfcf',
+    backgroundColor: '#4DD0E1',
     margin: 20,
     padding: 20
   },
