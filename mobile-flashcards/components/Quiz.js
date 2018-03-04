@@ -72,10 +72,11 @@ class Quiz extends React.Component {
     return (
       <KeyboardAvoidingView style={styles.containCenter}>
         <Text style={styles.title}>
-          Quiz
+        { this.state.title } Quiz
         </Text>
 
-        { this.state.countCardsTotal - this.state.countCardsSeen > 0
+        { this.state.countCardsTotal > 0 &&
+          (this.state.countCardsTotal - this.state.countCardsSeen > 0)
           ? <View>
               <View style={styles.containCenter}>
                 <Text style={styles.text}>{ this.state.countCardsTotal - this.state.countCardsSeen } remaining</Text>
@@ -109,27 +110,34 @@ class Quiz extends React.Component {
                 </TouchableOpacity>
               </View>
             </View>
-          : <View>
-              <Text style={styles.text}>
-                { this.state.countCardsCorrect } / { this.state.countCardsTotal } correct!
-              </Text>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.onSubmitDeckView()}
-              >
-                <View>
-                  <Text>Back to Deck</Text>
+          : this.state.countCardsTotal > 0
+              ? <View>
+                  <Text style={styles.text}>
+                    { this.state.countCardsCorrect } / { this.state.countCardsTotal } correct!
+                  </Text>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => this.onSubmitDeckView()}
+                  >
+                    <View>
+                      <Text>Back to Deck</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => this.onSubmitResetQuiz()}
+                  >
+                    <View>
+                      <Text>Reset Quiz</Text>
+                    </View>
+                  </TouchableOpacity>
                 </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.onSubmitResetQuiz()}
-              >
-                <View>
-                  <Text>Reset Quiz</Text>
+              : <View>
+                  <Text style={styles.text}>
+                    This deck has no cards!
+                  </Text>
                 </View>
-              </TouchableOpacity>
-            </View>
+
         }
 
       </KeyboardAvoidingView>
@@ -161,6 +169,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#F44336',
     margin: 20,
+    padding: 20,
+  },
+  button: {
+    borderRadius: 10,
+    backgroundColor: '#4DD0E1',
+    margin: 20,
+    marginBottom: 10,
     padding: 20,
   },
   addButtonText: {

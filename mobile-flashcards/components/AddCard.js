@@ -22,7 +22,9 @@ class AddCard extends React.Component {
   }
 
   onSubmit = (decks, title, question, answer) => {
-    this.props.addCard(decks, title, question, answer);
+    if (question && question !== '' && answer && answer !== '') {
+      this.props.addCard(decks, title, question, answer);
+    }
     this.props.navigation.goBack()
   }
 

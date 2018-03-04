@@ -26,7 +26,9 @@ class AddDeck extends React.Component {
   }
 
   onSubmit = (decks, title) => {
-    this.props.addDeck(decks, title);
+    if (title && title !== '' ) {
+      this.props.addDeck(decks, title);
+    }
     this.props.navigation.goBack()
   }
 
