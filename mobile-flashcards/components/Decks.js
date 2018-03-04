@@ -1,6 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text,
-         View, FlatList,
+import { StyleSheet,
+         Text,
+         View,
+         FlatList,
          TouchableOpacity } from 'react-native'
 import initialDecks from '../utils/initialDecks'
 import { connect } from 'react-redux'

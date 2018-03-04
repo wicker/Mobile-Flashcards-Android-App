@@ -1,9 +1,10 @@
 import React from 'react'
-import { StyleSheet, Text,
-         View, FlatList,
+import { StyleSheet,
+         Text,
+         View,
+         FlatList,
          TouchableOpacity,
-         Form, Item, Label,
-         TextInput, Button,
+         TextInput,
          KeyboardAvoidingView} from 'react-native'
 import initialDecks from '../utils/initialDecks'
 import { connect } from 'react-redux'
@@ -25,6 +26,9 @@ class AddDeck extends React.Component {
     }))
   }
 
+  /* Only update the store's decks object if the
+   * new deck's title exists as more than
+   * an empty string. */
   onSubmit = (decks, title) => {
     if (title && title !== '' ) {
       this.props.addDeck(decks, title);
@@ -104,7 +108,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
-  addDeck: (decks, title) => dispatch(addNewDeck(decks, title)),
+  addDeck: (decks, title) => dispatch(addNewDeck(decks, title))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddDeck)

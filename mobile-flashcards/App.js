@@ -43,7 +43,7 @@ const MainNav = StackNavigator({
     navigationOptions: {
       title: 'Mobile Flashcards App',
       headerStyle: {
-        backgroundColor: '#00BCD4',
+        backgroundColor: '#00BCD4'
       }
     }
   },
@@ -51,7 +51,7 @@ const MainNav = StackNavigator({
     screen: DeckView,
     navigationOptions: {
       headerStyle: {
-        backgroundColor: '#00BCD4',
+        backgroundColor: '#00BCD4'
       }
     }
   },
@@ -59,7 +59,7 @@ const MainNav = StackNavigator({
     screen: Quiz,
     navigationOptions: {
       headerStyle: {
-        backgroundColor: '#00BCD4',
+        backgroundColor: '#00BCD4'
       }
     }
   },
@@ -67,7 +67,7 @@ const MainNav = StackNavigator({
     screen: AddCard,
     navigationOptions: {
       headerStyle: {
-        backgroundColor: '#00BCD4',
+        backgroundColor: '#00BCD4'
       }
     }
   }
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#B2EBF2',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 });
 

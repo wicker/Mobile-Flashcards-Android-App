@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, Text,
-         View, FlatList,
+import { StyleSheet,
+         Text,
+         View,
+         FlatList,
          TouchableOpacity,
-         Form, Item, Label,
-         TextInput, Button,
-         KeyboardAvoidingView} from 'react-native'
+         TextInput,
+         KeyboardAvoidingView } from 'react-native'
 import initialDecks from '../utils/initialDecks'
 import { connect } from 'react-redux'
 import { addNewCard } from '../actions'
@@ -21,6 +22,9 @@ class AddCard extends React.Component {
 		};
   }
 
+  /* Only update the store's decks object if the
+   * question and answer both exist as more than
+   * an empty string. */
   onSubmit = (decks, title, question, answer) => {
     if (question && question !== '' && answer && answer !== '') {
       this.props.addCard(decks, title, question, answer);
@@ -72,7 +76,7 @@ class AddCard extends React.Component {
 const styles = StyleSheet.create({
   containCenter: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   addButton: {
     borderRadius: 10,
@@ -111,7 +115,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatch,
   addCard: (decks, title, question, answer) =>
-    dispatch(addNewCard(decks, title, question, answer)),
+    dispatch(addNewCard(decks, title, question, answer))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddCard)

@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, Text,
-         View, FlatList,
+import { StyleSheet,
+         Text,
+         View,
+         FlatList,
          TouchableOpacity,
-         Form, Item, Label,
-         TextInput, Button,
-         KeyboardAvoidingView} from 'react-native'
+         TextInput,
+         KeyboardAvoidingView } from 'react-native'
 import initialDecks from '../utils/initialDecks'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
@@ -65,8 +66,7 @@ class Quiz extends React.Component {
 
   render() {
 
-    if (
-        this.state.countCardsTotal - this.state.countCardsSeen > 0) {
+    if ( this.state.countCardsTotal - this.state.countCardsSeen > 0) {
       if (this.state.displayQuestion) {
         cardMessage = this.state.questions[this.state.countCardsSeen].question;
         buttonMessage = 'Show Answer';
@@ -86,7 +86,9 @@ class Quiz extends React.Component {
           (this.state.countCardsTotal - this.state.countCardsSeen > 0)
           ? <View>
               <View style={styles.containCenter}>
-                <Text style={styles.text}>{ this.state.countCardsTotal - this.state.countCardsSeen } remaining</Text>
+                <Text style={styles.text}>
+                  { this.state.countCardsTotal - this.state.countCardsSeen } remaining
+                </Text>
                 <Text style={styles.cardText}>{ cardMessage }</Text>
                 <TouchableOpacity
                   style={styles.showButton}
@@ -155,7 +157,7 @@ class Quiz extends React.Component {
 const styles = StyleSheet.create({
   containCenter: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   showButton: {
     borderRadius: 10,
@@ -163,31 +165,31 @@ const styles = StyleSheet.create({
     margin: 20,
     padding: 10,
     borderColor: '#000',
-    borderWidth: 2,
+    borderWidth: 2
   },
   correctButton: {
     borderRadius: 10,
     backgroundColor: '#00E676',
     margin: 20,
     marginBottom: 10,
-    padding: 20,
+    padding: 20
   },
   incorrectButton: {
     borderRadius: 10,
     backgroundColor: '#F44336',
     margin: 20,
-    padding: 20,
+    padding: 20
   },
   button: {
     borderRadius: 10,
     backgroundColor: '#4DD0E1',
     margin: 20,
     marginBottom: 10,
-    padding: 20,
+    padding: 20
   },
   addButtonText: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   text: {
     padding: 10,
@@ -199,13 +201,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     width: 400
-  },
-  input: {
-    borderRadius: 10,
-    padding: 10,
-    margin: 10,
-    backgroundColor: '#fff',
-    width: 300
   },
   title: {
     fontSize: 26,

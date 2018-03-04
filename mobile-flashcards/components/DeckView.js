@@ -1,6 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text,
-         View, TouchableOpacity } from 'react-native'
+import { StyleSheet,
+         Text,
+         View,
+         TouchableOpacity } from 'react-native'
 import initialDecks from '../utils/initialDecks'
 import { connect } from 'react-redux'
 import { getAllDecks } from '../actions'
@@ -36,11 +38,6 @@ class DeckView extends React.Component {
     this.props.navigation.navigate('Quiz', {title: title, cards: cards})
   }
 
-  renderDeck = ({deck}) => (
-    <View style={styles.contain}>
-      <Text>Test</Text></View>
-  )
-
   render() {
 
     if (this.state.isLoaded) {
@@ -74,12 +71,15 @@ class DeckView extends React.Component {
 
         </View>
       )
+
     } else {
+
       return (
         <View style={styles.contain}>
           <AppLoading />
         </View>
       );
+
     }
   }
 }
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'stretch',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   containCenter: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   decksButton: {
     borderRadius: 10,
