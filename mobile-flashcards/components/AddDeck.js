@@ -20,12 +20,6 @@ class AddDeck extends React.Component {
 		};
   }
 
-  handleTextChange = (input) => {
-    this.setState(() => ({
-      input
-    }))
-  }
-
   /* Only update the store's decks object if the
    * new deck's title exists as more than
    * an empty string. */
@@ -33,8 +27,8 @@ class AddDeck extends React.Component {
     if (title && title !== '' ) {
       this.props.addDeck(decks, title);
     }
-    this.setState({text: '', input: ''});
-    this.props.navigation.goBack()
+    this.setState({text: ''});
+    this.props.navigation.navigate('DeckView', {title: title})
   }
 
   render() {
