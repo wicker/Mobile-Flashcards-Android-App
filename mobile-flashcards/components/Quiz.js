@@ -77,55 +77,61 @@ class Quiz extends React.Component {
 
         { this.state.countCardsTotal - this.state.countCardsSeen > 0
           ? <View>
-             <Text style={styles.text}>{ this.state.countCardsTotal - this.state.countCardsSeen } remaining</Text>
-             <Text style={styles.cardText}>{ cardMessage }</Text>
-             <TouchableOpacity
-               style={styles.button}
-               onPress={() => this.onSubmitShowButton()}
-             >
-               <View>
-                 <Text>{ buttonMessage }</Text>
-               </View>
-             </TouchableOpacity>
-             <TouchableOpacity
-               style={styles.button}
-               onPress={() => this.onSubmitCorrect()}
-             >
-               <View>
-                 <Text>Correct</Text>
-               </View>
-             </TouchableOpacity>
-             <TouchableOpacity
-               style={styles.button}
-               onPress={() => this.onSubmitIncorrect()}
-             >
-               <View>
-                 <Text>Incorrect</Text>
-               </View>
-             </TouchableOpacity>
-            </View>
-          :  <Text style={styles.text}>
-               { this.state.countCardsCorrect } / { this.state.countCardsTotal } correct!
-             </Text>
+              <View style={styles.containCenter}>
+                <Text style={styles.text}>{ this.state.countCardsTotal - this.state.countCardsSeen } remaining</Text>
+                <Text style={styles.cardText}>{ cardMessage }</Text>
+                <TouchableOpacity
+                  style={styles.showButton}
+                  onPress={() => this.onSubmitShowButton()}
+                >
+                  <View>
+                    <Text>{ buttonMessage }</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
 
+              <View style={styles.containCenter}>
+                <TouchableOpacity
+                  style={styles.correctButton}
+                  onPress={() => this.onSubmitCorrect()}
+                >
+                  <View>
+                    <Text>Correct</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.incorrectButton}
+                  onPress={() => this.onSubmitIncorrect()}
+                >
+                  <View>
+                    <Text>Incorrect</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+          : <View>
+              <Text style={styles.text}>
+                { this.state.countCardsCorrect } / { this.state.countCardsTotal } correct!
+              </Text>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.onSubmitDeckView()}
+              >
+                <View>
+                  <Text>Back to Deck</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.onSubmitResetQuiz()}
+              >
+                <View>
+                  <Text>Reset Quiz</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
         }
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.onSubmitDeckView()}
-        >
- 				  <View>
-            <Text>Back to Deck</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.onSubmitResetQuiz()}
-        >
- 				  <View>
-            <Text>Reset Quiz</Text>
-          </View>
-        </TouchableOpacity>
       </KeyboardAvoidingView>
     )
   }
@@ -136,11 +142,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button: {
+  showButton: {
     borderRadius: 10,
-    backgroundColor: '#4DD0E1',
+    backgroundColor: '#fff',
     margin: 20,
-    padding: 20
+    padding: 10,
+    borderColor: '#000',
+    borderWidth: 2,
+  },
+  correctButton: {
+    borderRadius: 10,
+    backgroundColor: '#00E676',
+    margin: 20,
+    marginBottom: 10,
+    padding: 20,
+  },
+  incorrectButton: {
+    borderRadius: 10,
+    backgroundColor: '#F44336',
+    margin: 20,
+    padding: 20,
   },
   addButtonText: {
     fontSize: 20,
