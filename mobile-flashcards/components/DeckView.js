@@ -4,6 +4,7 @@ import { StyleSheet, Text,
 import initialDecks from '../utils/initialDecks'
 import { connect } from 'react-redux'
 import { getAllDecks } from '../actions'
+import { AppLoading } from 'expo'
 
 class DeckView extends React.Component {
 
@@ -42,7 +43,6 @@ class DeckView extends React.Component {
 
   render() {
 
-
     if (this.state.isLoaded) {
 
       return (
@@ -77,7 +77,7 @@ class DeckView extends React.Component {
     } else {
       return (
         <View style={styles.contain}>
-          <Text>Loading animation...</Text>
+          <AppLoading />
         </View>
       );
     }

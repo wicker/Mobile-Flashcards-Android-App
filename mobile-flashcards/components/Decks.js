@@ -5,11 +5,12 @@ import { StyleSheet, Text,
 import initialDecks from '../utils/initialDecks'
 import { connect } from 'react-redux'
 import { getAllDecks } from '../actions'
+import { AppLoading } from 'expo'
 
 class Decks extends React.Component {
 
   state = {
-    isLoaded: false
+    isLoaded: false,
   }
 
   componentWillMount() {
@@ -20,11 +21,6 @@ class Decks extends React.Component {
   onPress(deck) {
     this.props.navigation.navigate('DeckView', {title: deck.title})
   }
-
-  renderDeck = ({deck}) => (
-    <View style={styles.contain}>
-      <Text>Test</Text></View>
-  )
 
   render() {
 
@@ -59,9 +55,7 @@ class Decks extends React.Component {
       )
     } else {
       return (
-        <View style={styles.contain}>
-          <Text>Loading animation...</Text>
-        </View>
+        <AppLoading />
       );
     }
   }

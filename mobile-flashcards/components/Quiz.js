@@ -8,6 +8,8 @@ import { StyleSheet, Text,
 import initialDecks from '../utils/initialDecks'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
+import { clearLocalNotification,
+         setLocalNotification } from '../utils/notifications'
 
 class Quiz extends React.Component {
 
@@ -21,6 +23,11 @@ class Quiz extends React.Component {
       countCardsCorrect: 0,
       displayQuestion: true
 		};
+  }
+
+  componentDidMount = () => {
+    clearLocalNotification()
+      .then(setLocalNotification)
   }
 
   onSubmitShowButton = () => {
@@ -111,7 +118,7 @@ class Quiz extends React.Component {
               </View>
             </View>
           : this.state.countCardsTotal > 0
-              ? <View>
+              ? <View style={styles.containCenter}>
                   <Text style={styles.text}>
                     { this.state.countCardsCorrect } / { this.state.countCardsTotal } correct!
                   </Text>
@@ -186,6 +193,12 @@ const styles = StyleSheet.create({
     padding: 10,
     textAlign: 'center',
     fontSize: 18
+  },
+  cardText: {
+    padding: 10,
+    textAlign: 'center',
+    fontSize: 18,
+    width: 400
   },
   input: {
     borderRadius: 10,

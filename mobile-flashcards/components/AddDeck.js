@@ -29,6 +29,7 @@ class AddDeck extends React.Component {
     if (title && title !== '' ) {
       this.props.addDeck(decks, title);
     }
+    this.setState({text: '', input: ''});
     this.props.navigation.goBack()
   }
 
