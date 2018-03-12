@@ -23,17 +23,11 @@ I used Android Studio with Expo on Linux Mint 18.3 for development.
 
 ![](img/emulator.png)
 
-![](img/decks.png)
+![](img/decks.png) ![](img/add_a_deck.png)
 
-![](img/add_a_deck.png)
+![](img/view_deck.png) ![](img/add_a_card.png)
 
-![](img/view_deck.png)
-
-![](img/add_a_card.png)
-
-![](img/quiz_question.png)
-
-![](img/quiz_answer.png)
+![](img/quiz_question.png) ![](img/quiz_answer.png)
 
 ![](img/quiz_result.png)
 
