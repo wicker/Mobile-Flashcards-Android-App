@@ -2,8 +2,6 @@ import initialDecks from '../utils/initialDecks'
 import * as AsyncStorageAPI from '../utils/AsyncStorageAPI'
 
 export const GET_DECKS = 'GET_DECKS';
-export const ADD_DECK = 'ADD_DECK';
-export const ADD_CARD = 'ADD_CARD';
 
 /* update the store with the decks
    from AsyncStorage */
